@@ -1,0 +1,334 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="form">
+      <form method="POST">
+        {{ form.hidden_tag() }} {{ form.search.label }} {{ form.search() }} {{
+        form.submit() }}
+      </form>
+    </div>
+    <div>
+      {% for result in results %}
+      <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
+      <p>Score: {{ result['Score'] }}</p>
+      {% endfor %}
+    </div>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+      .form {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">{{ form.search.label }}</label>
+            <div class="col-sm-10">
+              {{ form.search(class="form-control") }}
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+              {{ form.submit(class="btn btn-primary") }}
+            </div>
+          </div>
+        </form>
+      </div>
+      <div>
+        {% for result in results %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
+            </h5>
+            <p class="card-text">Score: {{ result['Score'] }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      .form {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      .results {
+        max-width: 600px;
+        width: 100%;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+
+      .card {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label>{{ form.search.label }}</label>
+            {{ form.search(class="form-control") }}
+          </div>
+          <div class="text-center">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+      </div>
+      <div class="results">
+        <div class="card-columns">
+          {% for result in results %}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
+              </h5>
+              <p class="card-text">Score: {{ result['Score'] }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            background-color: black;
+        }
+        h2 {
+            color: #333;
+            font-size: 24px; 
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .form {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #7acae0;
+            border: 1px solid #0b0b0b;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .results {
+            width: 80%;
+            overflow-y: auto;
+        }
+            
+        
+        .card {
+            background-color: whitesmoke;
+            /*padding: 5px;*/         
+            font-family: Georgia, serif; 
+            font-size: 15px; 
+            font-weight: bold; 
+            margin-top: 2px;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+
+        .card-title a {
+            color: #0f0f10;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+    
+        .card-title a:hover {
+            color: #525ee6;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form text-center">
+        <h2>SEARCH ENGINE</h2>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label>{{ form.search.label }}</label>
+            {{ form.search(class="form-control text-center")}}
+          </div>
+          <div class="text-center">
+            {{ form.submit(class="btn btn-outline-dark") }}
+          </div>
+        </form>
+      </div>
+      <div class="results">
+        <div class="card-rows">
+          {% for result in results %}
+          <div class="card rounded">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">
+                        <a href="{{ result['Question Link'] }}">{{ result['Document'] }}<span>&#8599;</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .results {
+        width: 100%;
+        max-width: 800px;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .results h3 {
+        margin-bottom: 10px;
+      }
+
+      .result-item {
+        margin-bottom: 20px;
+      }
+
+      .result-item a {
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .result-item a:hover {
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form text-center">
+        <h2>SEARCH ENGINE</h2>
+        <form method="POST">
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            <label>{{ form.search.label }}</label>
+            {{ form.search(class="form-control") }}
+          </div>
+          <div class="text-center">
+            {{ form.submit(class="btn btn-outline-dark") }}
+          </div>
+        </form>
+      </div>
+      <div class="results">
+        <h3>Search Results</h3>
+        {% for result in results %}
+        <div class="result-item">
+          <h4>
+            <a href="{{ result['Question Link'] }}">{{ result['Document'] }}</a>
+          </h4>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html> -->
