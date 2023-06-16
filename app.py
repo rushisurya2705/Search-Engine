@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 import math
+import chardet
 
 from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
@@ -8,13 +9,29 @@ from wtforms import StringField, SubmitField
 # current_directory = os.path.dirname(os.path.abspath(__file__))
 # directory = os.path.join(current_directory, 'tf-idf')
 
+def find_encoding(fname):
+    r_file = open(fname, 'rb').read()
+    result = chardet.detect(r_file)
+    charenc = result['encoding']
+    return charenc
+
 def load_vocab():
     vocab = {}
-    with open('tf-idf/vocab.txt', 'r') as f:
+    filename = 'tf-idf/vocab.txt'
+    my_encoding = find_encoding(filename)
+    # with open('tf-idf/vocab.txt', 'r', encoding='utf-8') as f:
+    #     vocab_terms = f.readlines()
+    with open(filename, 'r', encoding=my_encoding) as f:
         vocab_terms = f.readlines()
-    with open('tf-idf/idf-values.txt', 'r') as f:
-        idf_values = f.readlines()
     
+    filename = 'tf-idf/idf-values.txt'
+    my_encoding = find_encoding(filename)
+    # with open('tf-idf/idf-values.txt', 'r', encoding='utf-8') as f:
+    #     idf_values = f.readlines()
+    with open(filename, 'r', encoding=my_encoding) as f:
+        idf_values = f.readlines()
+
+
     for (term,idf_value) in zip(vocab_terms, idf_values):
         vocab[term.strip()] = int(idf_value.strip())
     
@@ -22,8 +39,13 @@ def load_vocab():
 
 def load_documents():
     documents = []
-    with open('tf-idf/documents.txt', 'r') as f:
+    # with open('tf-idf/documents.txt', 'r', encoding='utf-8') as f:
+    #     documents = f.readlines()
+    filename = 'tf-idf/documents.txt'
+    my_encoding = find_encoding(filename)
+    with open(filename, 'r', encoding=my_encoding) as f:
         documents = f.readlines()
+
     documents = [document.strip().split() for document in documents]
 
     # print('Number of documents: ', len(documents))
@@ -32,9 +54,13 @@ def load_documents():
 
 def load_inverted_index():
     inverted_index = {}
-    with open('tf-idf/inverted-index.txt', 'r') as f:
-        inverted_index_terms = f.readlines()
-
+    # with open('tf-idf/inverted-index.txt', 'r', encoding='utf-8') as f:
+    #     inverted_index_terms = f.readlines()
+    filename = 'tf-idf/inverted-index.txt'
+    my_encoding = find_encoding(filename)
+    with open(filename, 'r', encoding=my_encoding) as f:
+        inverted_index_terms = f.readlines()    
+    
     for row_num in range(0,len(inverted_index_terms),2):
         term = inverted_index_terms[row_num].strip()
         documents = inverted_index_terms[row_num+1].strip().split()
@@ -45,8 +71,12 @@ def load_inverted_index():
 
 
 def load_link_of_qs():
-    with open("Qindex.txt", "r") as f:
-        links = f.readlines()
+    # with open("Qindex.txt", "r", encoding='utf-8') as f:
+    #     links = f.readlines()
+    filename = 'Qindex.txt'
+    my_encoding = find_encoding(filename)
+    with open(filename, 'r', encoding=my_encoding) as f:
+        links = f.readlines()    
 
     return links
 
