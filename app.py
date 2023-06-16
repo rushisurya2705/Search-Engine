@@ -1,25 +1,17 @@
-import os
 from flask import Flask, jsonify
 import math
-# import re
 
 from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-directory = os.path.join(current_directory, 'tf-idf')
+# current_directory = os.path.dirname(os.path.abspath(__file__))
+# directory = os.path.join(current_directory, 'tf-idf')
 
 def load_vocab():
     vocab = {}
-    # filepath = os.path.join(directory, 'vocab.txt')
-    # with open(filepath, 'r') as f:
-    #     vocab_terms = f.readlines()
     with open('tf-idf/vocab.txt', 'r') as f:
         vocab_terms = f.readlines()
-    # filepath = os.path.join(directory, 'idf-values.txt')
-    # with open(filepath, 'r') as f:
-    #     idf_values = f.readlines()
     with open('tf-idf/idf-values.txt', 'r') as f:
         idf_values = f.readlines()
     
@@ -30,9 +22,6 @@ def load_vocab():
 
 def load_documents():
     documents = []
-    # filepath = os.path.join(directory, 'documents.txt')
-    # with open(filepath, 'r') as f:
-    #     documents = f.readlines()
     with open('tf-idf/documents.txt', 'r') as f:
         documents = f.readlines()
     documents = [document.strip().split() for document in documents]
@@ -43,9 +32,6 @@ def load_documents():
 
 def load_inverted_index():
     inverted_index = {}
-    # filepath = os.path.join(directory, 'inverted-index.txt')
-    # with open(filepath, 'r') as f:
-    #     inverted_index_terms = f.readlines()
     with open('tf-idf/inverted-index.txt', 'r') as f:
         inverted_index_terms = f.readlines()
 
@@ -57,14 +43,6 @@ def load_inverted_index():
     # print('Size of inverted index: ', len(inverted_index))
     return inverted_index
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_directory, 'Qindex.txt')
-# Open the file
-# def load_link_of_qs():
-#     with open(file_path, "r") as f:
-#         links = f.readlines()
-
-#     return links
 
 def load_link_of_qs():
     with open("Qindex.txt", "r") as f:
@@ -95,31 +73,10 @@ def get_idf_value(term):
     return math.log(len(documents)/vocab_idf_values[term])
 
 
-# def calculate_sorted_order_of_documents(query_terms):
-#     potential_documents = {}
-#     for term in query_terms:
-#         if term not in vocab_idf_values or vocab_idf_values[term] == 0:
-#             continue
-#         tf_values_by_document = get_tf_dictionary(term)
-#         idf_value = get_idf_value(term)
-#         for document in tf_values_by_document:
-#             if document not in potential_documents:
-#                 potential_documents[document] = tf_values_by_document[document] * idf_value
-#             potential_documents[document] += tf_values_by_document[document] * idf_value
-
-#     for document in potential_documents:
-#         potential_documents[document] /= len(query_terms)
-
-#     potential_documents = dict(sorted(potential_documents.items(), key=lambda item: item[1], reverse=True))
-
-#     return potential_documents
-
-
 ans = []
 def calculate_sorted_order_of_documents(query_terms):
     potential_documents = {}
     for term in query_terms:
-        # if vocab_idf_values[term] == 0:
         if term not in vocab_idf_values or vocab_idf_values[term] == 0:
             continue
         tf_values_by_document = get_tf_dictionary(term)
@@ -130,8 +87,7 @@ def calculate_sorted_order_of_documents(query_terms):
                 potential_documents[document] = tf_values_by_document[document] * idf_value
             potential_documents[document] += tf_values_by_document[document] * idf_value
 
-    # print(potential_documents)
-
+    
     # divite by the length of the query terms
     for document in potential_documents:
         potential_documents[document] /= len(query_terms)
@@ -140,15 +96,13 @@ def calculate_sorted_order_of_documents(query_terms):
 
     for document_index in potential_documents:
         # print entire name of the document with joining the list items
-        # print('Document: ', ' '.join(documents[int(document_index)]))
-        # print('Question Link: ', Qlink[int(document_index) - 1][:-2], ' Score: ', potential_documents[document_index])
+        # print('Question Link: ', Qlink[int(document_index)][:-2], ' Score: ', potential_documents[document_index], 'Document: ', ' '.join(documents[int(document_index)]))
         ans.append({"Question Link": Qlink[int(document_index)][:-2], "Score": potential_documents[document_index], "Document": (' '.join(documents[int(document_index)])).upper()})
         # print('Document: ', documents[int(document_index)], ' Score: ', potential_documents[document_index])
     return ans
     
 # query_string = input('Enter your query: ')
 # query_terms = [term.lower() for term in query_string.strip().split()]
-
 # # print(query_terms)
 # calculate_sorted_order_of_documents(query_terms)
 
