@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SearchHive</title>
+  <title>🔎SearchHive</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> 
   <style>
     html, body {
       height: 100%;
-      background-position: center;
+      margin: 0;
+      padding: 0;
+      background: url('https://images.pexels.com/photos/8294650/pexels-photo-8294650.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2.jpg') no-repeat center center fixed;  /* adjust URL as needed */
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif; /* apply the new font */
     }
     
     h2 {
@@ -20,13 +30,52 @@
       transition: color 0.3s ease;
     }
 
+    h1:hover {
+      color: #bee441;
+    }
+
     h2:hover {
       color: #fefefe;
     }
 
+    /* Header */
+    header {
+      background-color: black;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      background-color: black;
+      padding: 10px;
+      text-align: center;
+      color: #f8f9fa;
+    }
+
+    footer a {
+      color: #f8f9fa;
+      margin-right: 10px;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      margin-right: 5px;
+      font-size: 20px;
+    }
 
     .container {
-      background-color: black;
+      /*background-color: black;*/
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -54,6 +103,7 @@
     }
 
     .card {
+      /*background-color: rgb(28, 30, 29);*/
       background-color: whitesmoke;
       font-family: Georgia, serif;
       font-size: 15px;
@@ -65,12 +115,13 @@
     .card:hover {
       transform: scale(1.2);
       /*background-color: #37e465;
-      background-color: #7acae0;*/
-      background-color: #97FFFF;
+      background-color: #7acae0;
+      background-color: #97FFFF;*/
+      background-color: turquoise;
     }
 
     .card-title a {
-      color: #0f0f10;
+      color: #0c0c0c;
       font-size: 15px;
       font-weight: bold;
       text-decoration: none;
@@ -78,11 +129,14 @@
     }
 
     .card-title a:hover {
-      color: #2435e9;
+      color: #0d20f2;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>SearchHive🛃</h1>
+  </header>
   <div class="container">
     <div class="form text-center">
       <h2>SEARCH ENGINE</h2>
@@ -115,5 +169,14 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    <p>&copy; 2023 SearchHive | 
+      <a href="mailto:rushisurya2705@gmail.com" target="_blank"><i class="far fa-envelope"></i></a>
+      <a href="https://github.com/rushisurya2705" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/rushikesh-suryavanshi-028921221" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/rushisurya2705" target="_blank"><i class="fab fa-instagram"></i></a>
+    </p>
+  </footer>
 </body>
 </html>
