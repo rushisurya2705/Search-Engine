@@ -1,70 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Search Page</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="form">
-      <form method="POST">
-        {{ form.hidden_tag() }} {{ form.search.label }} {{ form.search() }} {{
-        form.submit() }}
-      </form>
-    </div>
-    <div>
-      {% for result in results %}
-      <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
-      <p>Score: {{ result['Score'] }}</p>
-      {% endfor %}
-    </div>
-  </body>
-</html> -->
-
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>Search Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <style>
-      .form {
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="form">
-        <form method="POST">
-          {{ form.hidden_tag() }}
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">{{ form.search.label }}</label>
-            <div class="col-sm-10">
-              {{ form.search(class="form-control") }}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-10 offset-sm-2">
-              {{ form.submit(class="btn btn-primary") }}
-            </div>
-          </div>
-        </form>
-      </div>
-      <div>
-        {% for result in results %}
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="{{ result['Question Link'] }}">{{ result['Question Link'] }}</a>
-            </h5>
-            <p class="card-text">Score: {{ result['Score'] }}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,6 +86,10 @@
           <label>{{ form.search.label }}</label>
           {{ form.search(class="form-control text-center")}}
         </div>
+        <div class="form-group">
+          <label>{{ form.num_questions.label }}</label>
+          {{ form.num_questions(class="form-control text-center")}}
+        </div>
         <div class="text-center">
           {{ form.submit(class="btn btn-outline-dark") }}
         </div>
@@ -174,4 +111,3 @@
   </div>
 </body>
 </html>
-
